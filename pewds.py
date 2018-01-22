@@ -1,12 +1,12 @@
 # Fill your Reddit and Telegram API in example.config.py and rename it to config.py
 from PIL import Image
-import argparse
 import pytesseract
 import config
 import praw
 import cv2
 import os, sys
 import urllib
+import time
 
 reddit = praw.Reddit(client_id = config.client_id,
                      client_secret = config.client_secret,
@@ -16,7 +16,9 @@ reddit = praw.Reddit(client_id = config.client_id,
 
 subreddit = reddit.subreddit('PewdiepieSubmissions')
 
-banned = ["399","chair","tide","pods","do you know","but can you do this","the way","uganda","noodle","but can","slippy"]
+banned = ["399","chair","tide","pods","do you know","but can you do this","the way","uganda","noodle","but can","slippy","you do this"]
+
+websites = ["youtube","youtu.be","gallery","gif","mp4","webm","gfycat"]
 
 message = """ *Beep Boop and police sounds*
 
@@ -42,13 +44,19 @@ Meme police is real.
 def ban(post, text, desc):
     for word in banned:
        if word in text:
-            post.reply(message)
-            post.downvote
-            return
+           print("Found an illegal meme!")
+           post.reply(message)
+#           post.downvote()
+           print("Will w8 5 mins")
+           time.sleep(600)
+           return
        if word in desc:
-            post.reply(message)
-            post.downvote
-            return     
+           print("Found an illegal meme!")
+           post.reply(message)
+#           post.downvote()
+           print("Will w8 5 mins")
+           time.sleep(600)
+           return     
 
 def detect(post):
     if "png" or "jpg" in post.url:
@@ -57,7 +65,6 @@ def detect(post):
         urllib.urlretrieve(post.url, im)
         print(post)
         print(post.url)
-        print("NAME AND LINK")
         image = cv2.imread(im)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
@@ -69,24 +76,37 @@ def detect(post):
         os.remove(filename)
         os.remove(im)
         print(text)
-        ban(post, text, desc)
+        ban(post, text, desc)            
 
 for submission in subreddit.stream.submissions():
+    time.sleep(2)
     post = reddit.submission(submission)
+    if "gallery" in post.url:
+        continue
     if "youtube" in post.url:
-        continue
-    if "gif" in post.url:
-        continue
-    if "webm" in post.url:
-        continue
-    if "mp4" in post.url:
         continue
     if "youtu.be" in post.url:
         continue
-    if "gallery" in post.url:
+    if "gif" in post.url:
         continue
+    if "mp4" in post.url:
+        continue
+    if "gfycat" in post.url:
+        continue
+    if "webm" in post.url:
+        continue
+    if "v.redd" in post.url:
+        continue
+    if "facebook" in post.url:
+        continue
+    if "videos" in post.url:
+        continue
+    if "imgur" in post.url:
+        continue
+
     
     if "png" or "jpg" in post.url:
         detect(post)
+        continue
     else:
         continue
