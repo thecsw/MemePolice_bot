@@ -1,6 +1,7 @@
 # Fill your Reddit and Telegram API in example.config.py and rename it to config.py
 from message import message
 from text_recognition import text_recognition
+from blacklist import illegal_memes
 from tqdm import tqdm
 import config
 import praw
@@ -14,20 +15,8 @@ reddit = praw.Reddit(client_id = config.client_id,
 
 subreddit = reddit.subreddit('PewdiepieSubmissions')
 
-banned = ["399","chair","tide","pods","do you know","do u know","da wae","but can you do this","the way","uganda","noodle","but can","slippy","you do this","skiddadle","skadoodle","upvote if", "upvote so", "upvote to"]
-
-def search_meme(illegal_meme, creds, selected_submission):
-    if illegal_meme in creds:
-        print("Found an illegal meme!")
-        selected_submission.reply(message)
-        print("I will wait 5 minutes as a cooldown.")
-        time.sleep(300)
-        return
-
 def ban(post, recognized_text, desc):
-    for word in banned:
-    #    search_meme(word, recognized_text, post);
-     #   return
+    for word in illegal_memes:
        if word in recognized_text:
            print("Found an illegal meme!")
            post.reply(message)
@@ -58,6 +47,3 @@ if __name__ == "__main__":
                 print("Meme text -> \n {}".format(meme_text))
                 ban(post, meme_text, title)
                 continue
-            print("Finished this one!")
-        
-            time.sleep(50)
