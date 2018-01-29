@@ -1,8 +1,7 @@
 illegal_memes = [
     "399",
     "chair",
-    "tide",
-    "pods",
+    "tide pod",
     "do you know",
     "do u know",
     "da wae",
