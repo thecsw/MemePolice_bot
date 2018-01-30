@@ -4,7 +4,7 @@ Good day, sir! You have been visited by the **Meme Police!**
 
 I see that you posted an illegal meme on r/PewdiepieSubmissions, *for example: chair memes, tide pods, uganda memes, skiddadle skadoodle, upvote begging, and etc.*
 
-Do not publish old or overused memes here because **only fresh and scrattar memes are allowed!**
+Do not publish old or overused memes here because **only fresh and skrattar memes are allowed!**
 
 You have been warned and please, do not make the same mistake twice. No penalty for now.
 ______________________
