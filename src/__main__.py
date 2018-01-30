@@ -37,12 +37,12 @@ if __name__ == "__main__":
             post = reddit.submission(submission)
             title = post.title.encode('utf-8').lower()
             print("Submission title -> {}".format(title))
-            if "png" in post.url:
+            if ".png" in post.url:
                 meme_text = text_recognition(post)
                 print("Meme text -> \n {}".format(meme_text))
                 ban(post, meme_text, title)
                 continue
-            elif "jpg" in post.url:
+            elif ".jpg" in post.url:
                 meme_text = text_recognition(post)
                 print("Meme text -> \n {}".format(meme_text))
                 ban(post, meme_text, title)
