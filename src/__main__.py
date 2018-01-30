@@ -47,3 +47,6 @@ if __name__ == "__main__":
                 print("Meme text -> \n {}".format(meme_text))
                 ban(post, meme_text, title)
                 continue
+else:
+    pass
+                
