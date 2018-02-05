@@ -21,15 +21,15 @@ subreddit = reddit.subreddit('pewdiepiesubmissions')
 pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 
 
-def ban(post):
-    print("Found an illegal title!")
+def ban(post,place):
+    print("Found an illegal word in{}!".format(place))
     post.reply(message)
     time.sleep(60)
 
 
 if __name__ == "__main__":
     while True:
-        for submission in subreddit.stream.submissions():
+        for submission in tqdm(subreddit.stream.submissions()):
             post = reddit.submission(submission)
             title = post.title.encode('utf-8').lower()
             print("Title: {}".format(title))
@@ -43,13 +43,13 @@ if __name__ == "__main__":
                 print("\tImage Text: {}".format(meme_text))
                 for word in illegal_memes:
                     if word in meme_text:
-                        ban(post)
+                        ban(post,"image")
                     elif word in title:
-                        ban(post)
+                        ban(post,"title")
 
             else:
                 for word in illegal_memes:
                     if word in title:
-                        ban(post)
+                        ban(post,"title")
 else:
     pass
