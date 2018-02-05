@@ -1,4 +1,4 @@
-#This is for reddit
+# This is for reddit
 client_id = ''
 client_secret = ''
 username = ''

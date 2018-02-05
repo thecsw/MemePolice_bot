@@ -1,9 +1,13 @@
-# MemePolice_bot
+# MemePolice Bot
 
-##This is a reddit bot, specifically designed for finding old, stale, illegal memes on r/PewdiepieSubmissions
+## This is a reddit bot, specifically designed for finding old, stale, illegal memes on r/PewdiepieSubmissions
 
-###The link --> reddit.com/u/MemePolice_bot
 
-###Fell free to commit and push!
+## Links
+* [Bot Profile](http://reddit.com/u/MemePolice_bot)
 
-### FULL DOCUMENTATION WILL BE POSTED SOON
+
+## Setup
+* Install Python requirements with: *pip install -r requirements.txt*
+
+

@@ -1,0 +1,4 @@
+pytesseract
+opencv-python
+Pillow
+tqdm
