@@ -1,3 +1,5 @@
+# This is the message that all users who violated MemePolice will receive under their submissions
+
 message = """ *Police sounds*
 
 Good day, sir! You have been visited by the **Meme Police!**

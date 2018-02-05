@@ -1,3 +1,7 @@
+# This is a dictionary of all banned words.
+# If MemePolice_bot find these words in submission's title or text from media
+# The ban method will be called
+
 illegal_memes = [
     "399",
     "chair",
