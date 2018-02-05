@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Config File
+config.py
+
 # Distribution / packaging
 .Python
 env/
@@ -99,3 +102,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+
+# PyCharm
+/.idea
+/__pycache__

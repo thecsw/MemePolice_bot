@@ -6,7 +6,7 @@ illegal_memes = [
     "do u know",
     "da wae",
     "but can you do this",
-    "the way","uganda",
+    "the way", "uganda",
     "noodle",
     "but can",
     "slippy",
