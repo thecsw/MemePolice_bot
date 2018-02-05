@@ -24,7 +24,7 @@ pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 def ban(post):
     print("Found an illegal title!")
     post.reply(message)
-    time.sleep("60")
+    time.sleep(60)
 
 
 if __name__ == "__main__":
