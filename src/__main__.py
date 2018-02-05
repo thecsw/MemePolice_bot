@@ -16,7 +16,7 @@ reddit = praw.Reddit(client_id=config.client_id,
                      password=config.password,
                      user_agent=config.user_agent)
 
-subreddit = reddit.subreddit('test')
+subreddit = reddit.subreddit('pewdiepiesubmissions')
 
 pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 
