@@ -56,16 +56,16 @@ if __name__ == "__main__":
                 for word in illegal_memes:
                     if word in meme_text:
                         ban(post, "image")
-                        return
+                        break
                     # If not found in recognized text, analyze title
                     elif word in title:
                         ban(post,"title")
-                        return
+                        break
 
             else:
                 for word in illegal_memes:
                     if word in title:
                         ban(post,"title")
-                        return
+                        break
 else:
     pass
