@@ -24,7 +24,7 @@ pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 def ban(post):
     print("Found an illegal title!")
     post.reply(message)
-    time.sleep("60")
+    time.sleep(60)
 
 
 if __name__ == "__main__":
@@ -44,12 +44,15 @@ if __name__ == "__main__":
                 for word in illegal_memes:
                     if word in meme_text:
                         ban(post)
+                        return
                     elif word in title:
                         ban(post)
+                        return
 
             else:
                 for word in illegal_memes:
                     if word in title:
                         ban(post)
+                        return
 else:
     pass
