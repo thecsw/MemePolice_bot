@@ -1,13 +1,22 @@
 # Fill your Reddit and Telegram API in example.config.py and rename it to config.py
+
+# This is the message that users receive about illegal memes
 from message import message
+# This file contains one method to input an image and output found text
 from text_recognition import text_recognition
+# Dictionary of banned words
 from blacklist import illegal_memes
+# The config file with reddit API credentials
 import config as config
+# For the cooldown purposes, see below
 import time
 
+# Tracking iterations
 from tqdm import tqdm
+# Python Reddit API Wrapper. Self-explanatory
 import praw
 
+# Finding a pattern
 import re
 
 reddit = praw.Reddit(client_id=config.client_id,
@@ -18,22 +27,25 @@ reddit = praw.Reddit(client_id=config.client_id,
 
 subreddit = reddit.subreddit('pewdiepiesubmissions')
 
+# Tesseract-ocr package can work only with jpeg, jpg, png, gif, bmp files. Reject all other urls
 pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 
-
-def ban(post):
-    print("Found an illegal title!")
+# Sends a reply to users
+def ban(post,place):
+    print("Found an illegal word in{}!".format(place))
     post.reply(message)
     time.sleep(60)
 
 
 if __name__ == "__main__":
     while True:
-        for submission in subreddit.stream.submissions():
+        for submission in tqdm(subreddit.stream.submissions()):
             post = reddit.submission(submission)
+            # Sometimes the submissions' titles include non-ASCII symbols. Need to validate and encode.
+            # All the banned words are in lowercase, that is why we need to convert it to lowercase.
             title = post.title.encode('utf-8').lower()
             print("Title: {}".format(title))
-
+            
             if pattern.search(post.url) is not None:
                 print("\tMatched regex, post is an image")
                 try:
@@ -43,16 +55,17 @@ if __name__ == "__main__":
                 print("\tImage Text: {}".format(meme_text))
                 for word in illegal_memes:
                     if word in meme_text:
-                        ban(post)
+                        ban(post, "image")
                         return
+                    # If not found in recognized text, analyze title
                     elif word in title:
-                        ban(post)
+                        ban(post,"title")
                         return
 
             else:
                 for word in illegal_memes:
                     if word in title:
-                        ban(post)
+                        ban(post,"title")
                         return
 else:
     pass
