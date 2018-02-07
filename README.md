@@ -109,7 +109,7 @@ desired data.
 
 ## Acknowledgments
 
-* Fedora tip to jarhill0 for helping rewriting the code, structuring it and making it fancier. 
+* Fedora tip to Justin Schwaitzberg for helping rewriting the code, structuring it and making it fancier. 
 
 ## License
 
