@@ -51,6 +51,8 @@ sudo apt-get install tesseract-ocr
 sudo pacman -S tesseract-ocr
 ```
 
+I don't know what about other distros. I think tesseract-ocr is included in all package managers.
+
 ### Installing
 
 Nothing too complicated. The source code is written in python, so no worries.
@@ -111,4 +113,4 @@ desired data.
 
 ## License
 
-This project is licensed under the The GNU General Public License - see the [LICENSE.md](https://github.com/thecsw/rjokes/blob/master/LICENSE) file for details) explains it pretty well. 
+This project is licensed under the The GNU General Public License - see the [LICENSE.md](https://github.com/thecsw/MemePolice_bot/blob/master/LICENSE) file for details) explains it pretty well. 
