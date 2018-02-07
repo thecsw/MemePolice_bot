@@ -85,7 +85,7 @@ OR
 ```bash
 python src
 ```
-That is everything. The script now just runs and any user that is connected to your Telegram bot can input a number and the bot will retrieve the necessary information.
+That is everything. All illegal memes shall be found and OPs should be punsihed.
 
 ## Source code
 
