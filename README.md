@@ -1,9 +1,6 @@
-# Collatz Bot
+# MemePolice_bot
 
-Telegram bot that takes some natural number as an input and calculates a particular case of Collatz Conjecture with that number. Makes a graph of every step and also analyzes data to output at the end of the process.
-
-What is Collatz Conjecture? [Wikipedia](https://en.wikipedia.org/wiki/Collatz_conjecture) explains it pretty well. 
-
+This is a reddit bot that finds old or not funnny posts and images on r/PewdiepieSubmissions subreddit. When the bot finds an illegal meme, the OP will receive the message below. This bot was created as a joke and later on was improved a little bit. 
 
 <img src="https://i.imgur.com/DFdBGql.png">
 
@@ -29,11 +26,27 @@ OR
 pip install -r requirements.txt
 ```
 
-[telepot](https://github.com/nickoala/telepot) is a python framework for Telegram Bot API. This package will be used to connect to Telegram API and to communicate with users over the internet.
+[praw](https://github.com/praw-dev/praw) is Python Reddit API Wrapper. This will be the main and only package to connect to Reddit's API and extract desired data.
 
-[matplotlib](https://matplotlib.org/) is a Python plotting library that does its job very and very well. 
+[python-opencv](https://pypi.python.org/pypi/opencv-python) is used for image transformations and computer vision problems.
 
-About numpy and scipy, it is little bit redundant to manually install numpy and scipy as everything essential is already included in the matplotlib's dependencies. However, I just do it to be sure. 
+[pytesseract](https://pypi.python.org/pypi/pytesseract) is a python wrapper for Google's Tesseract-OCR.
+
+[Pillow](https://pillow.readthedocs.io/en/latest/) is the Python Imaging Library by Fredrik Lundh and Contributors.
+
+[tqdm](https://pypi.python.org/pypi/tqdm) is used for fancy progress bars.
+
+### Other dependencies
+
+Teeseract engine should be installed on a local machine to run the text recognition properly.
+
+#### Debian, Ubuntu (aptitude)
+
+sudo apt-get install tesseract-ocr
+
+#### Arch Linux (pacman)
+
+sudo pacman -S tesseract-ocr
 
 ### Installing
 
