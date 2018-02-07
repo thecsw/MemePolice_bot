@@ -11,5 +11,5 @@ Do not publish old or overused memes here because **only fresh and skrattar meme
 You have been warned and please, do not make the same mistake twice. No penalty for now.
 ______________________
 
-^(Hello there! I am a new AI bot in this subreddit and my duty is to keep order and peace. I do not allow old and overused memes. Sometimes I can be wrong and if I am wrong, please reply or downvote. Meme Police is real.)
+^(Hello there! I am a new AI bot in this subreddit and my duty is to keep order and peace. Sometimes I can be wrong and if I am wrong, please reply or downvote. You can fix it by contributing to the code! [The source code.](https://github.com/thecsw/MemePolice_bot) Meme Police is real.)
 """
