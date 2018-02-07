@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 ### Other dependencies
 
-Teeseract engine should be installed on a local machine to run the text recognition properly.
+Tesseract engine should be installed on a local machine to run the text recognition properly.
 
 #### Debian, Ubuntu (aptitude)
 ```
@@ -93,12 +93,12 @@ The code is heavily commented and all the important modules are being separated 
 
 ## Built With
 
-*[praw](https://github.com/praw-dev/praw) is Python Reddit API Wrapper. This will be the main and only package to connect to Reddit's API and extract \
+* [praw](https://github.com/praw-dev/praw) is Python Reddit API Wrapper. This will be the main and only package to connect to Reddit's API and extract \
 desired data.
-*[python-opencv](https://pypi.python.org/pypi/opencv-python) is used for image transformations and computer vision problems.
-*[pytesseract](https://pypi.python.org/pypi/pytesseract) is a python wrapper for Google's Tesseract-OCR.
-*[Pillow](https://pillow.readthedocs.io/en/latest/) is the Python Imaging Library by Fredrik Lundh and Contributors.
-*[tqdm](https://pypi.python.org/pypi/tqdm) is used for fancy progress bars.
+* [python-opencv](https://pypi.python.org/pypi/opencv-python) is used for image transformations and computer vision problems.
+* [pytesseract](https://pypi.python.org/pypi/pytesseract) is a python wrapper for Google's Tesseract-OCR.
+* [Pillow](https://pillow.readthedocs.io/en/latest/) is the Python Imaging Library by Fredrik Lundh and Contributors.
+* [tqdm](https://pypi.python.org/pypi/tqdm) is used for fancy progress bars.
 
 ## Authors
 
