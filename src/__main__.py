@@ -34,8 +34,6 @@ pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 def ban(post,place):
     print("Found an illegal word in{}!".format(place))
     post.reply(message)
-    # Reddit API has a limitations of actions performed per short period of time.
-    # So a cooldown of 1 minute is proven to be enough
     time.sleep(60)
 
 
@@ -57,14 +55,17 @@ if __name__ == "__main__":
                 print("\tImage Text: {}".format(meme_text))
                 for word in illegal_memes:
                     if word in meme_text:
-                        ban(post,"image")
+                        ban(post, "image")
+                        break
                     # If not found in recognized text, analyze title
                     elif word in title:
                         ban(post,"title")
+                        break
 
             else:
                 for word in illegal_memes:
                     if word in title:
                         ban(post,"title")
+                        break
 else:
     pass
