@@ -1,3 +1,4 @@
+praw
 pytesseract
 opencv-python
 Pillow
