@@ -9,6 +9,11 @@ __pycache__/
 # Config File
 config.py
 
+# Data Analyzation Files
+checked.txt
+checked.txt___jb_old___
+words.json
+
 # Distribution / packaging
 .Python
 env/
