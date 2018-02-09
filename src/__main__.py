@@ -79,11 +79,12 @@ def submission_thread():
 
 
 def comment_thread():
-    for c in subreddit.stream.comments():
-        try:
-            parse_comment(c)
-        except:
-            print("Error reading stream at " + time.strftime("%b %d, %Y - %I:%M:%S"))
+    while True:
+        for c in subreddit.stream.comments():
+            try:
+                parse_comment(c)
+            except:
+                print("Error reading stream at " + time.strftime("%b %d, %Y - %I:%M:%S"))
 
 
 if __name__ == "__main__":
