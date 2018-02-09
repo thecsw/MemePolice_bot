@@ -9,10 +9,9 @@ __pycache__/
 # Config File
 config.py
 
-# Data Analyzation Files
-checked.txt
-checked.txt___jb_old___
+# Analyzation files
 words.json
+checked.txt
 
 # Distribution / packaging
 .Python
