@@ -11,6 +11,10 @@ import config as config
 # For the cooldown purposes, see below
 import time
 
+# For analyzing and saving comment words
+from analyze import init_analyzation
+from analyze import parse_comment
+
 # Tracking iterations
 from tqdm import tqdm
 # Python Reddit API Wrapper. Self-explanatory
@@ -19,33 +23,37 @@ import praw
 # Finding a pattern
 import re
 
+# Multi-threading
+from threading import Thread
+
 reddit = praw.Reddit(client_id=config.client_id,
                      client_secret=config.client_secret,
                      username=config.username,
                      password=config.password,
                      user_agent=config.user_agent)
 
-subreddit = reddit.subreddit('pewdiepiesubmissions')
+subreddit = reddit.subreddit('test')
 
 # Tesseract-ocr package can work only with jpeg, jpg, png, gif, bmp files. Reject all other urls
 pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 
+
 # Sends a reply to users
-def ban(post,place):
+def ban(post, place):
     print("Found an illegal word in{}!".format(place))
     post.reply(message)
     time.sleep(60)
 
 
-if __name__ == "__main__":
+def submission_thread():
     while True:
         for submission in tqdm(subreddit.stream.submissions()):
             post = reddit.submission(submission)
             # Sometimes the submissions' titles include non-ASCII symbols. Need to validate and encode.
             # All the banned words are in lowercase, that is why we need to convert it to lowercase.
             title = post.title.encode('utf-8').lower()
-            print("Title: {}".format(title))
-            
+            print("Reading Submission '" + str(title) + "' at " + time.strftime("%b %d, %Y - %I:%M:%S"))
+
             if pattern.search(post.url) is not None:
                 print("\tMatched regex, post is an image")
                 try:
@@ -58,14 +66,30 @@ if __name__ == "__main__":
                         ban(post, "image")
                         break
                     # If not found in recognized text, analyze title
-                    elif word in title:
-                        ban(post,"title")
+                    elif word in str(title):
+                        ban(post, "title")
+
                         break
 
             else:
                 for word in illegal_memes:
-                    if word in title:
-                        ban(post,"title")
+                    if word in str(title):
+                        ban(post, "title")
                         break
+
+
+def comment_thread():
+    for c in subreddit.stream.comments():
+        try:
+            parse_comment(c)
+        except:
+            print("Error reading stream at " + time.strftime("%b %d, %Y - %I:%M:%S"))
+
+
+if __name__ == "__main__":
+    init_analyzation()
+
+    Thread(name="Submissions", target=submission_thread).start()
+    Thread(name="Comments", target=comment_thread).start()
 else:
     pass
