@@ -32,7 +32,7 @@ reddit = praw.Reddit(client_id=config.client_id,
                      password=config.password,
                      user_agent=config.user_agent)
 
-subreddit = reddit.subreddit('test')
+subreddit = reddit.subreddit('pewdiepiesubmissions')
 
 # Tesseract-ocr package can work only with jpeg, jpg, png, gif, bmp files. Reject all other urls
 pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
