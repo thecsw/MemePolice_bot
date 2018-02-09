@@ -36,7 +36,7 @@ def parse_comment(c):
         file.close()
 
         for w in c.body.split(' '):
-            if "http" in w or "/u/" in w or "/r/" in w or "\\" in w:
+            if "http" in w or "/u/" in w or "/r/" in w or "\\" in str(w.encode('utf-8')):
                 continue
 
             word = w

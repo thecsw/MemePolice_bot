@@ -10,8 +10,8 @@ __pycache__/
 config.py
 
 # Analyzation files
-.words.json
-.checked.txt
+words.json
+checked.txt
 
 # Distribution / packaging
 .Python
