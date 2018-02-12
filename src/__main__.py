@@ -86,10 +86,22 @@ def comment_thread():
             except:
                 print("Error reading stream at " + time.strftime("%b %d, %Y - %I:%M:%S"))
 
-
+def save_karma():
+    memepolice = reddit.redditor("MemePolice_bot")
+    while True:
+        for comment in tqdm(memepolice.comments.new(limit=100)):
+            # It will parse 100 comments in 5-6 seconds
+            #print(comment.fullname)
+            #print(comment.ups)
+            if (comment.ups < -1):
+                comment.delete()2
+    # We will wait an hour for downvotes to come
+    time.sleep(3600)
+                
 if __name__ == "__main__":
     init_analyzation()
-
+    
+    Thread(name="Save Karma", target=save_karma).start()
     Thread(name="Submissions", target=submission_thread).start()
     Thread(name="Comments", target=comment_thread).start()
 else:
