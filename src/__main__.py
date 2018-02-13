@@ -40,14 +40,28 @@ pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 
 # Sends a reply to users
 def ban(post, place):
-    print("Found an illegal word in{}!".format(place))
-    post.reply(message)
-    time.sleep(60)
+    checked = open("./checked.txt", 'r')
+    checked = checked.readlines()
+    checked.close()
+
+    if post.id not in checked:
+        print("Found an illegal word in{}!".format(place))
+        checked = open("./checked.txt", "a")
+        checked.write(post.id + "\n")
+        checked.close()
+
+        post.reply(message)
+        time.sleep(60)
 
 
 def submission_thread():
     while True:
         for submission in tqdm(subreddit.stream.submissions()):
+
+
+
+
+
             post = reddit.submission(submission)
             # Sometimes the submissions' titles include non-ASCII symbols. Need to validate and encode.
             # All the banned words are in lowercase, that is why we need to convert it to lowercase.
