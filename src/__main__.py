@@ -41,10 +41,10 @@ pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 # Sends a reply to users
 def ban(post, place):
     checked = open("./checked.txt", 'r')
-    checked = checked.readlines()
+    check = checked.readlines()
     checked.close()
 
-    if post.id not in checked:
+    if post.id not in check:
         print("Found an illegal word in{}!".format(place))
         checked = open("./checked.txt", "a")
         checked.write(post.id + "\n")
