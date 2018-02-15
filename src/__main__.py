@@ -115,7 +115,7 @@ def submission_thread():
                             save_user(str(post.author))
 
                             # Comment on post
-                            # ban(post, "image")
+                            ban(post, "image")
                             break
                         # If not found in recognized text, analyze title
                         elif word in str(title):
@@ -124,7 +124,7 @@ def submission_thread():
                             save_user(str(post.author))
 
                             # Comment on post
-                            # ban(post, "image")
+                            ban(post, "image")
                             break
 
                 else:
@@ -135,7 +135,7 @@ def submission_thread():
                             save_user(str(post.author))
 
                             # Comment on post
-                            # ban(post, "image")
+                            ban(post, "image")
                             break
             else:
                 print("Already checked meme, skipping")
