@@ -17,6 +17,9 @@ config.py
 words.json
 checked.txt
 
+# User files
+users.json
+
 # Distribution / packaging
 .Python
 env/

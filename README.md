@@ -72,7 +72,7 @@ After filling out the details, save and exit. You're done with installation.
 
 ## Deployment
 
-Config file is ready and you are good to go!
+Remove the word **'example'** from the title of all files with it.
 
 Just run this
 
