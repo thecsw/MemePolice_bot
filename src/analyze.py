@@ -25,12 +25,14 @@ def init_analyzation():
 
 
 def parse_comment(c):
-    print("Reading comment " + c.id + " at " + time.strftime("%b %d, %Y - %I:%M:%S"))
+
     check = open("./data-analyzation/checked.txt", 'r')
     checked = check.readlines()
     check.close()
 
     if c.id + "\n" not in checked:
+        print("Reading comment " + c.id + " at " + time.strftime("%b %d, %Y - %I:%M:%S") + " by " + str(c.author))
+
         file = open("./data-analyzation/checked.txt", "a")
         file.write(c.id + "\n")
         file.close()

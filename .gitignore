@@ -17,6 +17,14 @@ config.py
 words.json
 checked.txt
 
+# User files
+users.json
+
+
+# Temp OCR files
+temp
+temp-ocr.png
+
 # Distribution / packaging
 .Python
 env/
