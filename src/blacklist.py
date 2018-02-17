@@ -20,5 +20,9 @@ illegal_memes = [
     "skadoodle",
     "upvote if",
     "upvote so",
-    "upvote to"
+    "upvote to",
+    "fbi agent",
+    "fbi",
+    "connect",
+    "original content"
 ]
