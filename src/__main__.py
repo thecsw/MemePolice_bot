@@ -46,8 +46,9 @@ pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 def ban(post, place):
     print("Found an illegal word in {}!".format(place))
     post.reply(message)
-    time.sleep(60)
-
+#   time.sleep(60)              
+# Reddit API does have some access limits for bots.
+# Our bot has 800+ karma and now maybe the timer is not even needed that much?
 
 def save_user(user):
     try:
