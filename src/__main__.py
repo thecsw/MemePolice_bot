@@ -1,7 +1,7 @@
 # Fill your Reddit and Telegram API in example.config.py and rename it to config.py
 
 # This is the message that users receive about illegal memes
-from message import message
+from message import message, mention
 # This file contains one method to input an image and output found text
 from text_recognition import text_recognition
 # Dictionary of banned words
@@ -146,12 +146,14 @@ def comment_thread():
     while True:
         for c in subreddit.stream.comments():
             try:
+                if "u/memepolice_bot" in c.encode("utf-8").lower: # Somebody mentioned us, maybe to come?
+                    c.submission.reply(message)
+                    c.reply(mention)
                 parse_comment(c)
             except:
                 print("Error reading stream at " + time.strftime("%b %d, %Y - %I:%M:%S"))
 
         time.sleep(60)
-
 
 def save_karma():
     memepolice = reddit.redditor("MemePolice_bot")
