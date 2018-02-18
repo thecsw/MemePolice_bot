@@ -16,6 +16,7 @@ What things you need to install the software and how to install them
 sudo pip install praw
 sudo pip install python-opencv
 sudo pip install pytesseract
+sudo pip install tesseract-ocr
 sudo pip install Pillow
 sudo pip install tqdm
 ```
@@ -48,7 +49,7 @@ sudo apt-get install tesseract-ocr
 #### Arch Linux (pacman)
 
 ```
-sudo pacman -S tesseract-ocr
+sudo pacman -S tesseract
 ```
 
 I don't know what about other distros. I think tesseract-ocr is included in all package managers.
@@ -80,11 +81,6 @@ Just run this
 python __main__.py
 ```
 
-OR
-
-```bash
-python src
-```
 That is everything. All illegal memes shall be found and OPs should be punsihed.
 
 ## Source code
@@ -105,11 +101,11 @@ desired data.
 ## Authors
 
 * **Sagindyk Urazayev** - *Initial work* - [thecsw](https://github.com/thecsw)
-* **Justin Schwaitzberg** - *Rewriting and structuring* - [Schwaitz](https://github.com/Schwaitz)
+* **Justin Schwaitzberg** - *Rewriting, structuring, and adding new features* - [Schwaitz](https://github.com/Schwaitz)
 
 ## Acknowledgments
 
-* Fedora tip to Justin Schwaitzberg for helping rewriting the code, structuring it and making it fancier. 
+* Fedora tip to Justin Schwaitzberg for greatly contributing to the code, structuring it and making it fancier. 
 
 ## License
 
