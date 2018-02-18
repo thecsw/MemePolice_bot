@@ -3,26 +3,28 @@
 # The ban method will be called
 
 illegal_memes = [
-    "399",
+    "399",                      # Chair memes
     "chair",
-    "tide pod",
-    "do you know",
+    "but can you do this",
+    "but can",
+    "you do this",
+    "tide pod",                 # Tide pods
+    "do you know",              # Ugandan memes
     "do u know",
     "da wae",
-    "but can you do this",
     "the way",
     "uganda",
-    "noodle",
-    "but can",
-    "slippy",
-    "you do this",
-    "skiddadle",
+    "slippy",                   # Slippy memes
+    "noodle",                   # Skidaddle memes
+    "skiddadle",           
     "skadoodle",
-    "upvote if",
+    "upvote if",                # Upvote begging
     "upvote so",
     "upvote to",
-    "fbi agent",
+    "upvote this",
+    "please upvote",
+    "fbi agent",                # FBI agent memes
     "fbi",
-    "connect",
-    "original content"
+    "connect",                  # The connect game memes
+    "original content"          # Self-explanatory
 ]
