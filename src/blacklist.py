@@ -23,6 +23,11 @@ illegal_memes = [
     "upvote to",
     "upvote this",
     "please upvote",
+    "if this post",
+    "if this submission",
+    "when this post",
+    "when this submission",
+    "please like",
     "fbi agent",                # FBI agent memes
     "fbi",
     "connect",                  # The connect game memes
