@@ -1,5 +1,15 @@
 # Fill your Reddit and Telegram API in example.config.py and rename it to config.py
 
+'''
+ __  __                       ____       _ _          
+|  \/  | ___ _ __ ___   ___  |  _ \ ___ | (_) ___ ___ 
+| |\/| |/ _ \ '_ ` _ \ / _ \ | |_) / _ \| | |/ __/ _ \
+| |  | |  __/ | | | | |  __/ |  __/ (_) | | | (_|  __/
+|_|  |_|\___|_| |_| |_|\___| |_|   \___/|_|_|\___\___|
+       
+'''
+
+
 # This is the message that users receive about illegal memes
 from message import message
 # This file contains one method to input an image and output found text
@@ -40,7 +50,6 @@ subreddit = reddit.subreddit('pewdiepiesubmissions')
 
 # Tesseract-ocr package can work only with jpeg, jpg, png, gif, bmp files. Reject all other urls
 pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
-
 
 # Sends a reply to users
 def ban(post, place):
