@@ -30,7 +30,6 @@ illegal_memes = [
     "please like",
     "fbi agent",                # FBI agent memes
     "fbi",
-    "connect",                  # The connect game memes
     "original content",         # Self-explanatory 
     "logan paul",               # Logan Paul memes.  
     "logan",                    # It is dead from "PEWDIEPIE CRINGE" (24-02-2018)
@@ -39,5 +38,5 @@ illegal_memes = [
     "suicide forest",
     "pauler",
     "paulers",
-    "suicides"
+    "suicide"
 ]
