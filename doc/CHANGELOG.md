@@ -1,5 +1,8 @@
 # Changelog
 
+* **2/25/18** - Sandy
+  * Fixed skipping some downvoted comments 
+
 * **2/15/18** - Justin
   * Added offending user tracking
   * Fixed skipping of already checked memes
