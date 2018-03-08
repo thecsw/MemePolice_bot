@@ -171,8 +171,8 @@ def save_karma():
             # print(comment.ups)
             if (comment.ups < -1):
                 comment.delete()
-    # We will wait an hour for downvotes to come
-    time.sleep(3600)
+        # We will wait an hour for downvotes to come
+        time.sleep(3600)
 
 
 if __name__ == "__main__":

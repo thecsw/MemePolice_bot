@@ -123,3 +123,7 @@ ENV/
 # PyCharm
 /.idea
 /__pycache__
+
+
+# OS X DS_Store files
+.DS_Store
