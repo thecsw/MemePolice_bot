@@ -1,6 +1,6 @@
 # MemePolice_bot
 
-This is a reddit bot that finds old or not funnny posts and images on r/PewdiepieSubmissions subreddit. When the bot finds an illegal meme, the OP will receive the message below. This bot was created as a joke and later on was improved a little bit. 
+This is a reddit bot that finds old or not funnny posts and images on r/PewdiepieSubmissions subreddit. When the bot finds an illegal meme, the OP will receive the message below. This bot was created as a serious project (joke-ish) and later on was improved a little bit. 
 
 <img src="https://i.imgur.com/DFdBGql.png">
 
@@ -56,8 +56,6 @@ I don't know what about other distros. I think tesseract-ocr is included in all 
 
 ### Installing
 
-Nothing too complicated. The source code is written in python, so no worries.
-
 The only thing that needs to be done before execution is the config profile. In the config profile you should fill your Reddit API details.
 
 For that please follow these steps
@@ -85,9 +83,7 @@ That is everything. All illegal memes shall be found and OPs should be punsihed.
 
 ## Source code
 
-I know that the script is little bit messy, I tried. Simple and small, but it works!
-
-The code is heavily commented and all the important modules are being separated into different files. Look pretty.
+The code is heavily commented and all the important modules are being separated into different files. Looks pretty, dunno.
 
 ## Built With
 
@@ -109,4 +105,4 @@ desired data.
 
 ## License
 
-This project is licensed under the The GNU General Public License - see the [LICENSE.md](https://github.com/thecsw/MemePolice_bot/blob/master/LICENSE) file for details) explains it pretty well. 
+This project is licensed under the The GNU General Public License - see the [LICENSE.md](https://github.com/thecsw/MemePolice_bot/blob/master/doc/LICENSE) file for details) explains it pretty well. 
