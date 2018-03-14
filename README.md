@@ -105,4 +105,4 @@ desired data.
 
 ## License
 
-This project is licensed under the The GNU General Public License - see the [LICENSE.md](https://github.com/thecsw/MemePolice_bot/blob/master/doc/LICENSE) file for details) explains it pretty well. 
+This project is licensed under the The GNU General Public License - see the [LICENSE.md](https://github.com/thecsw/MemePolice_bot/blob/master/LICENSE) file for details) explains it pretty well. 
