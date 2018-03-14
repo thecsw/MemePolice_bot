@@ -15,3 +15,10 @@ ______________________
 
 [The source code.](https://github.com/thecsw/MemePolice_bot)
 """
+
+mention = """ *Police sounds*
+
+Good day, sir! Thank you for calling us!
+
+We hope that the post is illegal and we didn't get bamboozled.
+"""

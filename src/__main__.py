@@ -11,7 +11,7 @@
 
 
 # This is the message that users receive about illegal memes
-from message import message
+from message import message, mention
 # This file contains one method to input an image and output found text
 from text_recognition import text_recognition
 # Dictionary of banned words
@@ -55,8 +55,9 @@ pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 def ban(post, place):
     print("Found an illegal word in {}!".format(place))
     post.reply(message)
-    time.sleep(60)
-
+#   time.sleep(60)              
+# Reddit API does have some access limits for bots.
+# Our bot has 800+ karma and now maybe the timer is not even needed that much?
 
 def save_user(user):
     try:
@@ -155,12 +156,14 @@ def comment_thread():
     while True:
         for c in subreddit.stream.comments():
             try:
+                if "u/memepolice_bot" in c.encode("utf-8").lower: # Somebody mentioned us, maybe to come?
+                    c.submission.reply(message)
+                    c.reply(mention)
                 parse_comment(c)
             except:
                 print("Error reading stream at " + time.strftime("%b %d, %Y - %I:%M:%S"))
 
         time.sleep(60)
-
 
 def save_karma():
     memepolice = reddit.redditor("MemePolice_bot")
