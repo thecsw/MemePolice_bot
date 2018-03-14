@@ -173,7 +173,7 @@ def submission_thread():
                             save_user(str(post.author))
 
                             # Comment on post
-                            ban(post, "image")
+                            ban(post, "image", word)
                             break
 
                         # If not found in recognized text, analyze title
@@ -182,7 +182,7 @@ def submission_thread():
                             save_user(str(post.author))
 
                             # Comment on post
-                            ban(post, "image")
+                            ban(post, "image", word)
                             break
 
                 else:
@@ -192,7 +192,7 @@ def submission_thread():
                             save_user(str(post.author))
 
                             # Comment on post
-                            ban(post, "image")
+                            ban(post, "image", word)
                             break
             else:
                 print("Already checked post, '" + str(title) + "' - skipping")
