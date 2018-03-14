@@ -9,7 +9,6 @@
        
 '''
 
-
 # This is the message that users receive about illegal memes
 from message import message, mention
 # This file contains one method to input an image and output found text
@@ -18,12 +17,18 @@ from text_recognition import text_recognition
 from blacklist import illegal_memes
 # The config file with reddit API credentials
 import config as config
+
+# The rude phrases reply list and function
+from rude_phrases import rude_list, rude_reply_list, rudeness_reply
+
 # For the cooldown purposes, see below
 import time
 
 # For analyzing and saving comment words
-from analyze import init_analyzation
-from analyze import parse_comment
+from analyze import init_analyzation, parse_comment
+
+# Assorted Utilities
+from utils import log_to_file
 
 # Tracking iterations
 from tqdm import tqdm
@@ -48,16 +53,28 @@ reddit = praw.Reddit(client_id=config.client_id,
 subreddit = reddit.subreddit('pewdiepiesubmissions')
 # subreddit = reddit.subreddit('test')
 
-# Tesseract-ocr package can work only with jpeg, jpg, png, gif, bmp files. Reject all other urls
+# Tesseract-OCR package can work only with jpeg, jpg, png, gif, bmp files. Reject all other urls
 pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 
+
 # Sends a reply to users
-def ban(post, place):
+def ban(post, place, violation):
     print("Found an illegal word in {}!".format(place))
-    post.reply(message)
-#   time.sleep(60)              
-# Reddit API does have some access limits for bots.
-# Our bot has 800+ karma and now maybe the timer is not even needed that much?
+
+    title = post.title.encode('utf-8').lower()
+
+    file = open("./logs/violations_log.txt", 'a')
+    file.write(str(title) + " at " + time.strftime("%b %d, %Y - %I:%M:%S") + "\n")
+    file.close()
+
+    # Save violation
+    save_violation(violation)
+
+    # Replace the text %VIOLATION% with the violating word
+    message_to_send = message.replace("%VIOLATION%", violation)
+
+    post.reply(message_to_send)
+
 
 def save_user(user):
     try:
@@ -73,7 +90,7 @@ def save_user(user):
                 file.write(json.dumps(users_json))
                 file.close()
             except:
-                print("Failed to write to users.json")
+                log_to_file("Failed to write to users.json at " + time.strftime("%b %d, %Y - %I:%M:%S"))
 
         else:
             users_json[user] = 1
@@ -83,10 +100,42 @@ def save_user(user):
                 file.write(json.dumps(users_json))
                 file.close()
             except:
-                print("Failed to write to users.json")
+                log_to_file("Failed to write to users.json at" + time.strftime("%b %d, %Y - %I:%M:%S"))
     except:
-        print("Failed to read users.json")
+        log_to_file("Failed to read users.json at" + time.strftime("%b %d, %Y - %I:%M:%S"))
         file = open("./users/users.json", 'w')
+        file.write("{}")
+        file.close()
+
+
+def save_violation(v):
+    try:
+        file = open("./violations/violations.json", 'r')
+        violations_json = json.loads(file.read())
+        file.close()
+
+        if v in violations_json.keys():
+            violations_json[v] = int(violations_json.get(v)) + 1
+
+            try:
+                file = open("./violations/violations.json", 'w')
+                file.write(json.dumps(violations_json))
+                file.close()
+            except:
+                log_to_file("Failed to write to violations.json at" + time.strftime("%b %d, %Y - %I:%M:%S"))
+
+        else:
+            violations_json[v] = 1
+
+            try:
+                file = open("./violations/violations.json", 'w')
+                file.write(json.dumps(violations_json))
+                file.close()
+            except:
+                log_to_file("Failed to write to violations.json at" + time.strftime("%b %d, %Y - %I:%M:%S"))
+    except:
+        log_to_file("Failed to read violations.json at" + time.strftime("%b %d, %Y - %I:%M:%S"))
+        file = open("./violations/violations.json", 'w')
         file.write("{}")
         file.close()
 
@@ -120,16 +169,15 @@ def submission_thread():
                     print("\tImage Text: {}".format(meme_text))
                     for word in illegal_memes:
                         if word in meme_text:
-
                             # Save user data
                             save_user(str(post.author))
 
                             # Comment on post
                             ban(post, "image")
                             break
+
                         # If not found in recognized text, analyze title
                         elif word in str(title):
-
                             # Save user data
                             save_user(str(post.author))
 
@@ -140,7 +188,6 @@ def submission_thread():
                 else:
                     for word in illegal_memes:
                         if word in str(title):
-
                             # Save user data
                             save_user(str(post.author))
 
@@ -148,7 +195,7 @@ def submission_thread():
                             ban(post, "image")
                             break
             else:
-                print("Already checked meme, skipping")
+                print("Already checked post, '" + str(title) + "' - skipping")
         time.sleep(60)
 
 
@@ -156,33 +203,59 @@ def comment_thread():
     while True:
         for c in subreddit.stream.comments():
             try:
-                if "u/memepolice_bot" in c.encode("utf-8").lower: # Somebody mentioned us, maybe to come?
+                if "u/memepolice_bot" in c.encode("utf-8").lower:  # Somebody mentioned us, maybe to come?
                     c.submission.reply(message)
                     c.reply(mention)
                 parse_comment(c)
             except:
-                print("Error reading stream at " + time.strftime("%b %d, %Y - %I:%M:%S"))
+                log_to_file("Error reading stream at " + time.strftime("%b %d, %Y - %I:%M:%S"))
 
         time.sleep(60)
+
 
 def save_karma():
     memepolice = reddit.redditor("MemePolice_bot")
     while True:
-        for comment in memepolice.comments.new(limit=256):
+        for comment in memepolice.comments.new(limit=100):
             # It will parse 100 comments in 5-6 seconds
-            # print(comment.fullname)
-            # print(comment.ups)
-            if (comment.ups < -1):
+            if comment.ups < -1:
                 comment.delete()
-        # We will wait an hour for downvotes to come
+
+        # 1 hour of sleep
         time.sleep(3600)
+
+
+def rude_reply_thread():
+    while True:
+        for reply in reddit.inbox.comment_replies():
+            check = open("./rudeness/checked.txt", 'r')
+            checked = check.readlines()
+            check.close()
+
+            if reply.id + "\n" not in checked:
+                file = open("./rudeness/checked.txt", "a")
+                file.write(reply.id + "\n")
+                file.close()
+
+                for w in rude_list:
+                    if w in reply.body:
+                        file = open("./rudeness/rudeness_log.txt", "a")
+                        file.write("Replied to " + reply.author + "'s comment: " + reply.body + "\n\n")
+                        file.close()
+
+                        rudeness_reply(reply)
+                        break
+
+        # 15 minutes of sleep
+        time.sleep(900)
 
 
 if __name__ == "__main__":
     init_analyzation()
 
-    Thread(name="Save Karma", target=save_karma).start()
     Thread(name="Submissions", target=submission_thread).start()
     Thread(name="Comments", target=comment_thread).start()
+    Thread(name="Save Karma", target=save_karma).start()
+    Thread(name="Rudeness", target=rude_reply_thread).start()
 else:
     pass
