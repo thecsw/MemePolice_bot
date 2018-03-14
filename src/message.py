@@ -6,7 +6,7 @@ Good day, sir/ma'am! You have been visited by the **Meme Police!**
 
 I see that you posted an illegal meme on r/PewdiepieSubmissions, *for example: chair memes, tide pods, uganda memes, skiddadle skadoodle, upvote begging, and etc.*
 
-Your violation was the keyword, ': %VIOLATION%'.
+Your violation was the keyword: '%VIOLATION%'.
 
 Do not publish old or overused memes here because **only fresh and skrattar memes are allowed!**
 
