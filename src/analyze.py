@@ -3,6 +3,8 @@ import json
 import time
 import re
 
+from utils import log_to_file
+
 words = []
 replace_chars = ['"', '.', ';', ':', '?', '!', '*', '+', '-', '(', ')', '[', ']', '{', '}', '>', '<', ',', '^', '@',
                  '$', '%', '&', '_', '=', '\n', '|', '\\', "#", '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -51,7 +53,7 @@ def parse_comment(c):
                     words_json = json.loads(file.read())
                     file.close()
                 except:
-                    print("Error reading file at " + time.strftime("%b %d, %Y - %I:%M:%S"))
+                    log_to_file("Failed to read words.json at " + time.strftime("%b %d, %Y - %I:%M:%S"))
                     continue
 
                 if word in words_json.keys():
@@ -66,8 +68,8 @@ def parse_comment(c):
                         file = open("./data-analyzation/words.json", 'w')
                         file.write(json.dumps(words_json))
                     except:
-                        print("Error writing file at " + time.strftime("%b %d, %Y - %I:%M:%S"))
+                        log_to_file("Failed to write words.json at " + time.strftime("%b %d, %Y - %I:%M:%S"))
                 else:
-                    print("Length discrepancy at" + time.strftime(" % b % d, % Y - % I: % M: % S"))
+                    log_to_file("Length discrepancy in words.json at " + time.strftime(" % b % d, % Y - % I: % M: % S"))
 
                 file.close()

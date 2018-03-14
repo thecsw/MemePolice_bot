@@ -10,7 +10,10 @@ __pycache__/
 # C extensions
 *.so
 
-# Config File
+# Error logging
+log.txt
+
+# Config file
 config.py
 
 # Analyzation files
@@ -19,6 +22,13 @@ checked.txt
 
 # User files
 users.json
+
+# Rudeness files
+rudeness_log.txt
+
+# Violation files
+violations.json
+violations_log.txt
 
 
 # Temp OCR files
