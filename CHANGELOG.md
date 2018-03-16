@@ -1,7 +1,17 @@
 # Changelog
 
+* **03/14/18** - Justin
+  * Violation in the main message
+  * Replies to rude users
+  * Logging errors to file
+  * Logging violations to file
+  * Logging rudeness replies to file
+
+* **03/14/18** - Sandy
+  * Added the mentions feature
+
 * **2/25/18** - Sandy
-  * Fixed skipping some downvoted comments 
+  * Fixed skipping some downvoted comments
 
 * **2/15/18** - Justin
   * Added offending user tracking
