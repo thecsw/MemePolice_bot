@@ -85,23 +85,34 @@ That is everything. All illegal memes shall be found and OPs should be punsihed.
 
 The code is heavily commented and all the important modules are being separated into different files. Looks pretty, dunno.
 
+Here is a short description of all the source files
+
+- `analyze.py` - Heavy file on analyzing comments and filling them in needed files
+- `blacklist.py` - Contains all the banned keywords that will trigger the bot to respond
+- `config.example.py` - Just the PRAW (OAuth) credentials for bot initialization.
+- `__main__.py` - The main script that processses everything and has the main loop with threads
+- `message.py` - Different messages that bot will send to users
+- `rude_phrases.py` - Bot's responses to rude replies
+- `text_recognition.py` - Returns text read from an image
+- `utils.py` - Just the logging and other technical stuff
+
 ## Built With
 
-* [praw](https://github.com/praw-dev/praw) is Python Reddit API Wrapper. This will be the main and only package to connect to Reddit's API and extract \
+- [praw](https://github.com/praw-dev/praw) is Python Reddit API Wrapper. This will be the main and only package to connect to Reddit's API and extract \
 desired data.
-* [python-opencv](https://pypi.python.org/pypi/opencv-python) is used for image transformations and computer vision problems.
-* [pytesseract](https://pypi.python.org/pypi/pytesseract) is a python wrapper for Google's Tesseract-OCR.
-* [Pillow](https://pillow.readthedocs.io/en/latest/) is the Python Imaging Library by Fredrik Lundh and Contributors.
-* [tqdm](https://pypi.python.org/pypi/tqdm) is used for fancy progress bars.
+- [python-opencv](https://pypi.python.org/pypi/opencv-python) is used for image transformations and computer vision problems.
+- [pytesseract](https://pypi.python.org/pypi/pytesseract) is a python wrapper for Google's Tesseract-OCR.
+- [Pillow](https://pillow.readthedocs.io/en/latest/) is the Python Imaging Library by Fredrik Lundh and Contributors.
+- [tqdm](https://pypi.python.org/pypi/tqdm) is used for fancy progress bars.
 
 ## Authors
 
-* **Sagindyk Urazayev** - *Initial work* - [thecsw](https://github.com/thecsw)
-* **Justin Schwaitzberg** - *Rewriting, structuring, and adding new features* - [Schwaitz](https://github.com/Schwaitz)
+- **Sagindyk Urazayev** - *Initial work* - [thecsw](https://github.com/thecsw)
+- **Justin Schwaitzberg** - *Rewriting, structuring, and adding new features* - [Schwaitz](https://github.com/Schwaitz)
 
 ## Acknowledgments
 
-* Fedora tip to Justin Schwaitzberg for greatly contributing to the code, structuring it and making it fancier. 
+ - Fedora tip to Justin Schwaitzberg for greatly contributing to the code, structuring it and making it fancier. 
 
 ## License
 
