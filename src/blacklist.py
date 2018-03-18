@@ -33,8 +33,8 @@ illegal_memes = [
     "please like",
     "fbi agent",                # FBI agent memes
     "fbi",
-    "original content",         # Self-explanatory 
-    "logan paul",               # Logan Paul memes.  
+    "original content",         # Self-explanatory
+    "logan paul",               # Logan Paul memes  
     "logan",                    # It is dead from "PEWDIEPIE CRINGE" (24-02-2018)
     "paul",
     "dead people",
@@ -42,8 +42,6 @@ illegal_memes = [
     "pauler",
     "paulers",
     "suicide",
-    "somebody toucha",          # The spaghet memes
-    "toucha",
-    "toucha my",
+    "toucha",                   # Spaghet memes. They are just old.
     "spaghet"
 ]
