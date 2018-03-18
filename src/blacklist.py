@@ -18,6 +18,9 @@ illegal_memes = [
     "noodle",                   # Skidaddle memes
     "skiddadle",           
     "skadoodle",
+    "your dick is now a noodle",
+    "is now a noodle",
+    "your dick",
     "upvote if",                # Upvote begging
     "upvote so",
     "upvote to",
@@ -38,5 +41,9 @@ illegal_memes = [
     "suicide forest",
     "pauler",
     "paulers",
-    "suicide"
+    "suicide",
+    "somebody toucha",          # The spaghet memes
+    "toucha",
+    "toucha my",
+    "spaghet"
 ]
