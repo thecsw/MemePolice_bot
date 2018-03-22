@@ -1,5 +1,4 @@
-#+TITLE: TODO LIST
-#+AUTHOR: Sandy
+#+TITLE: u/MemePolice_bot todo list
 #+DATE: 17-03-2018
 
 
