@@ -203,7 +203,7 @@ def comment_thread():
     while True:
         for c in subreddit.stream.comments():
             try:
-                if "u/memepolice_bot" in c.encode("utf-8").lower:  # Somebody mentioned us, maybe to come?
+                if "meme police" in c.encode("utf-8").lower:  # Somebody mentioned us, maybe to come?
                     c.submission.reply(message)
                     c.reply(mention)
                 parse_comment(c)
