@@ -39,20 +39,62 @@ pip install -r requirements.txt
 
 ### Other dependencies
 
-Tesseract engine should be installed on a local machine to run the text recognition properly.
+Tesseract engine should be installed on a local machine to run the text recognition properly. We will also install the tesseract OCR trained languages for better accuracy and we will install only the English packages. For more information about other languages, please refer to tesseract's official [repository on Github](https://github.com/tesseract-ocr/tesseract).
 
-#### Debian, Ubuntu (aptitude)
+#### Linux
+
+##### Debian, Ubuntu (aptitude)
 ```
 sudo apt-get install tesseract-ocr
+sudo apt-get install tesseract-ocr-eng
 ```
 
-#### Arch Linux (pacman)
+##### Arch Linux (pacman)
 
 ```
 sudo pacman -S tesseract
+sudo pacman -S tesseract-data-eng
+```
+
+#### Mac OS
+
+##### Ports
+
+```
+sudo port install tesseract
+sudo port install tesseract-eng
+```
+
+##### Homebrew
+
+```
+brew install tesseract
+```
+
+#### Windows
+
+##### MSYS2
+
+```
+pacman -S mingw-w64-{i686,x86_64}-tesseract-ocr
+pacman -S mingw-w64-tesseract-ocr-osd mingw-w64-{i686,x86_64}-tesseract-ocr-eng
+```
+
+##### Cygwin
+
+```
+Tesseract specific packages to be installed:
+
+tesseract-ocr                           3.04.01-1
+tesseract-ocr-eng                       3.04-1
+tesseract-training-core                 3.04-1
+tesseract-training-eng                  3.04-1
+tesseract-training-util                 3.04.01-1
 ```
 
 I don't know what about other distros. I think tesseract-ocr is included in all package managers.
+
+If you want to compile the tesseract engine  by yourself, please refer to the [official guides.](https://github.com/tesseract-ocr/tesseract/wiki/Compiling).
 
 ### Installing
 
