@@ -203,15 +203,12 @@ def comment_thread():
     while True:
         for c in subreddit.stream.comments():
             try:
-                if "meme police" in c.encode("utf-8").lower:  # Somebody mentioned us, maybe to come?
+                if ("meme police" in c.encode("utf-8").lower) or ("memepolice" in c.encode("utf-8").lower):  # Somebody mentioned us, maybe to come?
                     c.submission.reply(message)
                     c.reply(mention)
                 parse_comment(c)
             except:
                 log_to_file("Error reading stream at " + time.strftime("%b %d, %Y - %I:%M:%S"))
-
-        time.sleep(60)
-
 
 def save_karma():
     memepolice = reddit.redditor("MemePolice_bot")
