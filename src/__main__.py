@@ -204,21 +204,29 @@ def submission_thread():
 def comment_thread():
     while True:
         for c in subreddit.stream.comments():
-            summon_bot(c, "memepolice")
+            #print(c.body.encode("utf-8").lower())
+            #print("AUTHOR: {}\n".format(str(c.author.name.encode("utf-8").lower())))
+            #summon_bot(c) I just don't know how to deal with this yet. Needs improvements
+            damage_sound(c)
             parse_comment(c)
         time.sleep(30)          # Going to sleep for a while
 
-def summon_bot(strl):
+def summon_bot(c):
     try:
-        if ("memepolice" in strl) or ("meme police" in strl):
+        text = str(c.body.encode("utf-8").lower()) # c.body is a byte-like object but we need str
+        if (("memepolice" in strtext) or ("meme police" in text)) and (not c.author.name.encode("utf-8").lower() == "memepolice_bot"):
             c.reply(mention)
+            ban(c.submission, "image", "I was called!")
+            print("summon_bot triggered!")
     except Exception as e:
         print("Something bad happened in summon_bot: {}".format(e))
 
-def damage_sound(strl):
+def damage_sound(c):
     try:
-        if "no u" in strl:
+        text = str(c.body.encode("utf-8").lower())
+        if "no u" in text:
             c.reply(damages[random.randint(0, len(damages)-1)])
+            print("damage_sound triggered!")
     except Exception as e:
         print("Something bad happened in damage_sound: {}".format(e))
         
@@ -232,7 +240,6 @@ def save_karma():
 
         # 1 hour of sleep
         time.sleep(3600)
-
 
 def rude_reply_thread():
     while True:

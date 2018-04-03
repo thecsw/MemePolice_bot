@@ -17,14 +17,16 @@ file_length = -1
 
 
 def init_analyzation():
-    global words_json
+    try:
+        global words_json
 
-    file = open("./data-analyzation/words.json", 'r')
-    words_json = json.loads(file.read())
-    file.close()
+        file = open("./data-analyzation/words.json", 'r')
+        words_json = json.loads(file.read())
+        file.close()
 
-    file_length = len(words_json)
-
+        file_length = len(words_json)
+    except Exception as e:
+        print("Failed during init_analyzation: {}".format(e))
 
 def parse_comment(c):
 
