@@ -15,7 +15,7 @@ ______________________
 
 ^(I am an AI bot in this subreddit and my duty is to keep order and peace. Sometimes I can be wrong and if I am wrong, please reply or downvote. You can fix it by contributing to the code!  Meme Police is real.)
 
-[Source code](https://github.com/thecsw/MemePolice_bot) | [Subreddit](https://reddit.com/r/MemePolice_bot) | [Website](http://thecsw.github.io/MemePolice_bot)
+[Source code](https://github.com/thecsw/MemePolice_bot) | [Subreddit](https://reddit.com/r/MemePolice_bot)
 """
 
 mention = """ *Police sounds*
