@@ -16,8 +16,10 @@ illegal_memes = [
     "uganda",
     "slippy",                   # Slippy memes
     "noodle",                   # Skidaddle memes
-    "skiddadle",           
+    "skiddadle",
     "skadoodle",
+    "skidd",
+    "skado",
     "your dick is now a noodle",
     "is now a noodle",
     "your dick",
@@ -30,7 +32,11 @@ illegal_memes = [
     "if this submission",
     "when this post",
     "when this submission",
+    "pls upvote",
+    "upvote pls",
     "please like",
+    "pls like",
+    "up vote",
     "fbi agent",                # FBI agent memes
     "fbi",
     "original content",         # Self-explanatory
@@ -43,5 +49,8 @@ illegal_memes = [
     "paulers",
     "suicide",
     "toucha",                   # Spaghet memes. They are just old.
-    "spaghet"
+    "spaghet",
+    "repost",                   # Reposts
+    "in 15 mins",               # 15 mins and legally allowed to leave memes
+    "legally allowed"
 ]
