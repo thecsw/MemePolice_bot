@@ -24,3 +24,11 @@ Good day, sir! Thank you for calling us!
 
 We hope that the post is illegal and we didn't get bamboozled.
 """
+
+damages = [                     # This array holds responses for comments like "no u"
+    "*roblox damage sound*",
+    "*minecraft damage sound*",
+    "*fortnite damage sound*",
+    "*the sniper 2 damage sound*",
+    "*pubg damage sound*"
+]

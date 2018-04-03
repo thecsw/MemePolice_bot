@@ -10,7 +10,7 @@
 '''
 
 # This is the message that users receive about illegal memes
-from message import message, mention
+from message import message, mention, damages
 # This file contains one method to input an image and output found text
 from text_recognition import text_recognition
 # Dictionary of banned words
@@ -43,6 +43,8 @@ from threading import Thread
 
 # JSON Parsing
 import json
+
+import random
 
 reddit = praw.Reddit(client_id=config.client_id,
                      client_secret=config.client_secret,
@@ -202,14 +204,24 @@ def submission_thread():
 def comment_thread():
     while True:
         for c in subreddit.stream.comments():
-            try:
-                if ("meme police" in c.encode("utf-8").lower) or ("memepolice" in c.encode("utf-8").lower):  # Somebody mentioned us, maybe to come?
-                    c.submission.reply(message)
-                    c.reply(mention)
-                parse_comment(c)
-            except:
-                log_to_file("Error reading stream at " + time.strftime("%b %d, %Y - %I:%M:%S"))
+            summon_bot(c, "memepolice")
+            parse_comment(c)
+        time.sleep(30)          # Going to sleep for a while
 
+def summon_bot(strl):
+    try:
+        if ("memepolice" in strl) or ("meme police" in strl):
+            c.reply(mention)
+    except Exception as e:
+        print("Something bad happened in summon_bot: {}".format(e))
+
+def damage_sound(strl):
+    try:
+        if "no u" in strl:
+            c.reply(damages[random.randint(0, len(damages)-1)])
+    except Exception as e:
+        print("Something bad happened in damage_sound: {}".format(e))
+        
 def save_karma():
     memepolice = reddit.redditor("MemePolice_bot")
     while True:
