@@ -213,6 +213,7 @@ def comment_thread():
                 #time.sleep(2)   # Debugging
         time.sleep(30)          # Going to sleep for a while
 
+        
 def summon_bot(c):
     try:
         text = str(c.body.encode("utf-8").lower()) # c.body is a byte-like object but we need str
@@ -223,6 +224,7 @@ def summon_bot(c):
     except Exception as e:
         print("Something bad happened in summon_bot: {}".format(e))
 
+        
 def damage_sound(c):
     try:
         text = str(c.body.encode("utf-8").lower())
@@ -231,6 +233,7 @@ def damage_sound(c):
             print("damage_sound triggered!")
     except Exception as e:
         print("Something bad happened in damage_sound: {}".format(e))
+
         
 def save_karma():
     memepolice = reddit.redditor("MemePolice_bot")
@@ -243,6 +246,7 @@ def save_karma():
         # 1 hour of sleep
         time.sleep(3600)
 
+        
 def rude_reply_thread():
     while True:
         for reply in reddit.inbox.comment_replies():
@@ -271,9 +275,9 @@ def rude_reply_thread():
 if __name__ == "__main__":
     init_analyzation()
 
-#    Thread(name="Submissions", target=submission_thread).start()
+    Thread(name="Submissions", target=submission_thread).start()
     Thread(name="Comments", target=comment_thread).start()
-#    Thread(name="Save Karma", target=save_karma).start()
-#    Thread(name="Rudeness", target=rude_reply_thread).start()
+    Thread(name="Save Karma", target=save_karma).start()
+    Thread(name="Rudeness", target=rude_reply_thread).start()
 else:
     pass
