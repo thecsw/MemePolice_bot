@@ -151,14 +151,14 @@ def submission_thread():
             # All the banned words are in lowercase, that is why we need to convert it to lowercase.
             title = post.title.encode('utf-8').lower()
 
-            checked = open("./checked.txt", 'r')
+            checked = open("./data-analyzation/checked.txt", 'r')
             check = checked.readlines()
             checked.close()
 
             if post.id + "\n" not in check:
                 print("Reading Submission '" + str(title) + "' at " + time.strftime("%b %d, %Y - %I:%M:%S") + " by " + str(post.author))
 
-                checked = open("./checked.txt", "a")
+                checked = open("./data-analyzation/checked.txt", "a")
                 checked.write(post.id + "\n")
                 checked.close()
 
@@ -204,9 +204,9 @@ def submission_thread():
 def comment_thread():
     while True:
         for c in subreddit.stream.comments():
-            #print(c.body.encode("utf-8").lower())
-            #print("AUTHOR: {}\n".format(str(c.author.name.encode("utf-8").lower())))
-            #summon_bot(c) I just don't know how to deal with this yet. Needs improvements
+            print(c.body.encode("utf-8").lower())
+            print("AUTHOR: {}\n".format(str(c.author.name.encode("utf-8").lower())))
+            summon_bot(c)       #  I just don't know how to deal with this yet. Needs improvements
             damage_sound(c)
             parse_comment(c)
         time.sleep(30)          # Going to sleep for a while
@@ -214,7 +214,7 @@ def comment_thread():
 def summon_bot(c):
     try:
         text = str(c.body.encode("utf-8").lower()) # c.body is a byte-like object but we need str
-        if (("memepolice" in strtext) or ("meme police" in text)) and (not c.author.name.encode("utf-8").lower() == "memepolice_bot"):
+        if (("memepolice" in text) or ("meme police" in text)) and (not str(c.author.name.encode("utf-8").lower()) == "memepolice_bot"):
             c.reply(mention)
             ban(c.submission, "image", "I was called!")
             print("summon_bot triggered!")
@@ -269,9 +269,9 @@ def rude_reply_thread():
 if __name__ == "__main__":
     init_analyzation()
 
-    Thread(name="Submissions", target=submission_thread).start()
+#    Thread(name="Submissions", target=submission_thread).start()
     Thread(name="Comments", target=comment_thread).start()
-    Thread(name="Save Karma", target=save_karma).start()
-    Thread(name="Rudeness", target=rude_reply_thread).start()
+#    Thread(name="Save Karma", target=save_karma).start()
+#    Thread(name="Rudeness", target=rude_reply_thread).start()
 else:
     pass
