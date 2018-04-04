@@ -209,12 +209,14 @@ def comment_thread():
             summon_bot(c)       #  I just don't know how to deal with this yet. Needs improvements
             damage_sound(c)
             parse_comment(c)
+            time.sleep(2)
         time.sleep(30)          # Going to sleep for a while
 
 def summon_bot(c):
     try:
         text = str(c.body.encode("utf-8").lower()) # c.body is a byte-like object but we need str
-        if (("memepolice" in text) or ("meme police" in text)) and (not str(c.author.name.encode("utf-8").lower()) == "memepolice_bot"):
+#        if (("memepolice" in text) or ("meme police" in text)) and (not str(c.author.name.encode("utf-8").lower()) == "memepolice_bot"):
+        if ("u/memepolice" in text) and (not str(c.author.name.encode("utf-8").lower()) == "memepolice_bot"):
             c.reply(mention)
             ban(c.submission, "image", "I was called!")
             print("summon_bot triggered!")
