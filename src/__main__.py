@@ -204,19 +204,19 @@ def submission_thread():
 def comment_thread():
     while True:
         for c in subreddit.stream.comments():
-            print(c.body.encode("utf-8").lower())
-            print("AUTHOR: {}\n".format(str(c.author.name.encode("utf-8").lower())))
-            summon_bot(c)       #  I just don't know how to deal with this yet. Needs improvements
-            damage_sound(c)
-            parse_comment(c)
-            time.sleep(2)
+            if "memepolice" not in str(c.author.name.encode("utf-8").lower()): # We don't need to parse our own comments
+                print(str(c.body.encode("utf-8").lower()))
+                print(str(c.author.name.encode("utf-8").lower()))
+                summon_bot(c)
+                damage_sound(c)
+                parse_comment(c)
+                #time.sleep(2)   # Debugging
         time.sleep(30)          # Going to sleep for a while
 
 def summon_bot(c):
     try:
         text = str(c.body.encode("utf-8").lower()) # c.body is a byte-like object but we need str
-#        if (("memepolice" in text) or ("meme police" in text)) and (not str(c.author.name.encode("utf-8").lower()) == "memepolice_bot"):
-        if ("u/memepolice" in text) and (not str(c.author.name.encode("utf-8").lower()) == "memepolice_bot"):
+        if "u/memepolice" in text:
             c.reply(mention)
             ban(c.submission, "image", "I was called!")
             print("summon_bot triggered!")
