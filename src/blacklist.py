@@ -12,7 +12,6 @@ illegal_memes = [
     "do you know",              # Ugandan memes
     "do u know",
     "da wae",
-    "the way",
     "uganda",
     "slippy",                   # Slippy memes
     "noodle",                   # Skidaddle memes
@@ -52,5 +51,10 @@ illegal_memes = [
     "spaghet",
     "repost",                   # Reposts
     "in 15 mins",               # 15 mins and legally allowed to leave memes
-    "legally allowed"
+    "legally allowed",
+    "flat earth",               # Flat Earth thing. Dead from 05.04.18. 
+    "why like this",
+    "not like this",
+    "if earth is round",
+    "if earth is not flat"
 ]
