@@ -15,12 +15,14 @@ words_json = {}
 
 file_length = -1
 
+words_file = "./data-analyzation/words.json"
+checked_file = "./data-analyzation/checked.txt"
 
 def init_analyzation():
     try:
         global words_json
 
-        file = open("./data-analyzation/words.json", 'r')
+        file = open(words_file, 'r')
         words_json = json.loads(file.read())
         file.close()
 
@@ -30,14 +32,14 @@ def init_analyzation():
 
 def parse_comment(c):
 
-    check = open("./data-analyzation/checked.txt", 'r')
+    check = open(checked_file, 'r')
     checked = check.readlines()
     check.close()
 
     if c.id + "\n" not in checked:
         print("Reading comment " + c.id + " at " + time.strftime("%b %d, %Y - %I:%M:%S") + " by " + str(c.author))
 
-        file = open("./data-analyzation/checked.txt", "a")
+        file = open(checked_file, "a")
         file.write(c.id + "\n")
         file.close()
 
@@ -51,7 +53,7 @@ def parse_comment(c):
 
             if word != "" and word != " " and word != "'" and word != "," and word != '\n' and word[0] != "'" and "\\u" not in repr(word):
                 try:
-                    file = open("./data-analyzation/words.json", 'r')
+                    file = open(words_file, 'r')
                     words_json = json.loads(file.read())
                     file.close()
                 except:
@@ -67,7 +69,7 @@ def parse_comment(c):
 
                 if new_file_length > file_length - 100:
                     try:
-                        file = open("./data-analyzation/words.json", 'w')
+                        file = open(words_file, 'w')
                         file.write(json.dumps(words_json))
                     except:
                         log_to_file("Failed to write words.json at " + time.strftime("%b %d, %Y - %I:%M:%S"))
