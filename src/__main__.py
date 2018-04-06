@@ -53,7 +53,13 @@ reddit = praw.Reddit(client_id=config.client_id,
                      user_agent=config.user_agent)
 
 subreddit = reddit.subreddit('pewdiepiesubmissions')
-# subreddit = reddit.subreddit('test')
+
+violations_file = "./violations/violations.json"
+violations_log_file = "./logs/violations_log.txt"
+users_file = "./users/users.json"
+checked_file = "./data-analyzation/checked.txt"
+rude_checked_file = "./rudeness/checked.txt"
+rude_log_file = "./rudeness/rudeness_log.txt"
 
 # Tesseract-OCR package can work only with jpeg, jpg, png, gif, bmp files. Reject all other urls
 pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
@@ -65,7 +71,7 @@ def ban(post, place, violation):
 
     title = post.title.encode('utf-8').lower()
 
-    file = open("./logs/violations_log.txt", 'a')
+    file = open(violations_log_file, 'a')
     file.write(str(title) + " at " + time.strftime("%b %d, %Y - %I:%M:%S") + "\n")
     file.close()
 
@@ -80,7 +86,7 @@ def ban(post, place, violation):
 
 def save_user(user):
     try:
-        file = open("./users/users.json", 'r')
+        file = open(users_file, 'r')
         users_json = json.loads(file.read())
         file.close()
 
@@ -88,7 +94,7 @@ def save_user(user):
             users_json[user] = int(users_json.get(user)) + 1
 
             try:
-                file = open("./users/users.json", 'w')
+                file = open(users_file, 'w')
                 file.write(json.dumps(users_json))
                 file.close()
             except:
@@ -98,7 +104,7 @@ def save_user(user):
             users_json[user] = 1
 
             try:
-                file = open("./users/users.json", 'w')
+                file = open(users_file, 'w')
                 file.write(json.dumps(users_json))
                 file.close()
             except:
@@ -112,7 +118,7 @@ def save_user(user):
 
 def save_violation(v):
     try:
-        file = open("./violations/violations.json", 'r')
+        file = open(violations_file, 'r')
         violations_json = json.loads(file.read())
         file.close()
 
@@ -120,7 +126,7 @@ def save_violation(v):
             violations_json[v] = int(violations_json.get(v)) + 1
 
             try:
-                file = open("./violations/violations.json", 'w')
+                file = open(violations_file, 'w')
                 file.write(json.dumps(violations_json))
                 file.close()
             except:
@@ -130,14 +136,14 @@ def save_violation(v):
             violations_json[v] = 1
 
             try:
-                file = open("./violations/violations.json", 'w')
+                file = open(violations_file, 'w')
                 file.write(json.dumps(violations_json))
                 file.close()
             except:
                 log_to_file("Failed to write to violations.json at" + time.strftime("%b %d, %Y - %I:%M:%S"))
     except:
         log_to_file("Failed to read violations.json at" + time.strftime("%b %d, %Y - %I:%M:%S"))
-        file = open("./violations/violations.json", 'w')
+        file = open(violations_file, 'w')
         file.write("{}")
         file.close()
 
@@ -151,14 +157,14 @@ def submission_thread():
             # All the banned words are in lowercase, that is why we need to convert it to lowercase.
             title = post.title.encode('utf-8').lower()
 
-            checked = open("./data-analyzation/checked.txt", 'r')
+            checked = open(checked_file, 'r')
             check = checked.readlines()
             checked.close()
 
             if post.id + "\n" not in check:
                 print("Reading Submission '" + str(title) + "' at " + time.strftime("%b %d, %Y - %I:%M:%S") + " by " + str(post.author))
 
-                checked = open("./data-analyzation/checked.txt", "a")
+                checked = open(checked_file, "a")
                 checked.write(post.id + "\n")
                 checked.close()
 
@@ -250,18 +256,18 @@ def save_karma():
 def rude_reply_thread():
     while True:
         for reply in reddit.inbox.comment_replies():
-            check = open("./rudeness/checked.txt", 'r')
+            check = open(rude_checked_file, 'r')
             checked = check.readlines()
             check.close()
 
             if reply.id + "\n" not in checked:
-                file = open("./rudeness/checked.txt", "a")
+                file = open(rude_checked_file, "a")
                 file.write(reply.id + "\n")
                 file.close()
 
                 for w in rude_list:
                     if w in reply.body:
-                        file = open("./rudeness/rudeness_log.txt", "a")
+                        file = open(rude_log_file, "a")
                         file.write("Replied to " + reply.author + "'s comment: " + reply.body + "\n\n")
                         file.close()
 
