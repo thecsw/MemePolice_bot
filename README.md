@@ -24,7 +24,7 @@ sudo pip install tqdm
 OR
 
 ```
-pip install -r requirements.txt
+pip install --upgrade -r requirements.txt
 ```
 
 [praw](https://github.com/praw-dev/praw) is Python Reddit API Wrapper. This will be the main and only package to connect to Reddit's API and extract desired data.
@@ -58,38 +58,10 @@ sudo pacman -S tesseract-data-eng
 
 #### Mac OS
 
-##### Ports
-
-```
-sudo port install tesseract
-sudo port install tesseract-eng
-```
-
 ##### Homebrew
 
 ```
 brew install tesseract
-```
-
-#### Windows
-
-##### MSYS2
-
-```
-pacman -S mingw-w64-{i686,x86_64}-tesseract-ocr
-pacman -S mingw-w64-tesseract-ocr-osd mingw-w64-{i686,x86_64}-tesseract-ocr-eng
-```
-
-##### Cygwin
-
-```
-Tesseract specific packages to be installed:
-
-tesseract-ocr                           3.04.01-1
-tesseract-ocr-eng                       3.04-1
-tesseract-training-core                 3.04-1
-tesseract-training-eng                  3.04-1
-tesseract-training-util                 3.04.01-1
 ```
 
 I don't know what about other distros. I think tesseract-ocr is included in all package managers.
@@ -129,14 +101,26 @@ The code is heavily commented and all the important modules are being separated 
 
 Here is a short description of all the source files
 
-- `analyze.py` - Heavy file on analyzing comments and filling them in needed files
-- `blacklist.py` - Contains all the banned keywords that will trigger the bot to respond
+- `analyze.py` - Heavy file on analyzing comments and filling them in needed files.
+- `blacklist.py` - Contains all the banned keywords that will trigger the bot to respond.
 - `config.example.py` - Just the PRAW (OAuth) credentials for bot initialization.
-- `__main__.py` - The main script that processses everything and has the main loop with threads
-- `message.py` - Different messages that bot will send to users
-- `rude_phrases.py` - Bot's responses to rude replies
-- `text_recognition.py` - Returns text read from an image
-- `utils.py` - Just the logging and other technical stuff
+- `main.py` - The main script that processses everything and has the main loop with threads.
+- `message.py` - Different messages that bot will send to users.
+- `rude_phrases.py` - Bot's responses to rude replies.
+- `text_recognition.py` - Returns text read from an image.
+- `utils.py` - Just the logging and other technical stuff.
+- `__main__.py` - The file that should be executed.
+
+Here is a short description of .json and .txt files that we have
+
+- `./users/users.json` - this is a list of offenders with the number of illegal content posted
+- `./data-analyzation/checked.txt` - stores checked comments.
+- `./data-analyzation/words.json` - sotres words and their respective frequency.
+- `./rudeness/checked.txt` - stores old rude replies.
+- `./rudeness/rudeness_log.txt` - stores the logs and other "rude" data.
+- `./violations/violations.json` - stores all the violations.
+- `./logs/log.txt` - stores errors and other debug information.
+- `./logs/violations_log.txt` - debug data for violations.
 
 ## Built With
 
