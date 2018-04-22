@@ -6,10 +6,8 @@ illegal_memes = [
     "399",                      # Chair memes
     "chair",
     "but can you do this",
-    "but can",
     "you do this",
-    "tide pod",                 # Tide pods
-    "do you know",              # Ugandan memes
+    "tide pod",                 # Ugandan memes
     "do u know",
     "da wae",
     "uganda",
@@ -36,6 +34,7 @@ illegal_memes = [
     "please like",
     "pls like",
     "up vote",
+    "can we hit",
     "fbi agent",                # FBI agent memes
     "fbi",
     "original content",         # Self-explanatory
@@ -46,7 +45,6 @@ illegal_memes = [
     "suicide forest",
     "pauler",
     "paulers",
-    "suicide",
     "toucha",                   # Spaghet memes. They are just old.
     "spaghet",
     "repost",                   # Reposts
@@ -56,5 +54,6 @@ illegal_memes = [
     "why like this",
     "not like this",
     "if earth is round",
-    "if earth is not flat"
+    "if earth is not flat",
+    "this is so sad"
 ]

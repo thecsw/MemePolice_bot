@@ -69,7 +69,7 @@ pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 # Sends a reply to users
 def ban(post, place, violation):
     print("Found an illegal word in {}!".format(place))
-
+    
     title = post.title.encode('utf-8').lower()
 
     file = open(violations_log_file, 'a')
