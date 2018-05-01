@@ -1,4 +1,3 @@
-
 # Fill your Reddit and Telegram API in example.config.py and rename it to config.py
 
 '''
@@ -20,7 +19,7 @@ from blacklist import illegal_memes
 import config as config
 
 # The rude phrases reply list and function
-from rude_phrases import rude_list, rude_reply_list, rudeness_reply
+from rude_phrases import rude_list, rude_reply_list, rudeness_reply, alt_rudeness_reply
 
 # For the cooldown purposes, see below
 import time
@@ -69,7 +68,7 @@ pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 # Sends a reply to users
 def ban(post, place, violation):
     print("Found an illegal word in {}!".format(place))
-    
+
     title = post.title.encode('utf-8').lower()
 
     file = open(violations_log_file, 'a')
@@ -211,19 +210,15 @@ def submission_thread():
 def comment_thread():
     while True:
         for c in subreddit.stream.comments():
-            if "memepolice" not in str(c.author.name.encode("utf-8").lower()): # We don't need to parse our own comments
-#                print(str(c.body.encode("utf-8").lower()))
-#                print(str(c.author.name.encode("utf-8").lower()))
+            if "memepolice" not in str(c.author.name.encode("utf-8").lower()):  # We don't need to parse our own comments
                 summon_bot(c)
-                damage_sound(c)
                 parse_comment(c)
-                #time.sleep(2)   # Debugging
-        time.sleep(30)          # Going to sleep for a while
+        time.sleep(30)
 
-        
+
 def summon_bot(c):
     try:
-        text = str(c.body.encode("utf-8").lower()) # c.body is a byte-like object but we need str
+        text = str(c.body.encode("utf-8").lower())  # c.body is a byte-like object but we need str
         if "u/memepolice" in text:
             c.reply(mention)
             ban(c.submission, "image", "I was called!")
@@ -231,17 +226,17 @@ def summon_bot(c):
     except Exception as e:
         print("Something bad happened in summon_bot: {}".format(e))
 
-        
+
 def damage_sound(c):
     try:
         text = str(c.body.encode("utf-8").lower())
         if "no u" in text:
-            c.reply(damages[random.randint(0, len(damages)-1)])
+            c.reply(damages[random.randint(0, len(damages) - 1)])
             print("damage_sound triggered!")
     except Exception as e:
         print("Something bad happened in damage_sound: {}".format(e))
 
-        
+
 def save_karma():
     memepolice = reddit.redditor("MemePolice_bot")
     while True:
@@ -253,36 +248,44 @@ def save_karma():
         # 1 hour of sleep
         time.sleep(3600)
 
-        
+
 def rude_reply_thread():
     while True:
-        for reply in reddit.inbox.comment_replies():
+        for m in reddit.inbox.comment_replies():
             check = open(rude_checked_file, 'r')
             checked = check.readlines()
             check.close()
 
-            if reply.id + "\n" not in checked:
+            if m.id + "\n" not in checked:
                 file = open(rude_checked_file, "a")
-                file.write(reply.id + "\n")
+                file.write(m.id + "\n")
                 file.close()
 
-                for w in rude_list:
-                    if w in reply.body:
-                        file = open(rude_log_file, "a")
-                        file.write("Replied to " + reply.author + "'s comment: " + reply.body + "\n\n")
-                        file.close()
+                body = str(m.body.encode("utf-8").lower())
 
-                        rudeness_reply(reply)
+                if "ur mom gay" in body or "your mom gay" in body:
+                    alt_rudeness_reply(m, "no u")
+                    continue
+
+                if "no u" in body:
+                    alt_rudeness_reply(m, damages[random.randint(0, len(damages) - 1)])
+                    continue
+
+                for w in rude_list:
+                    if w in m.body:
+                        rudeness_reply(m)
                         break
 
         # 15 minutes of sleep
         time.sleep(900)
+
 
 def threads():
     Thread(name="Submissions", target=submission_thread).start()
     Thread(name="Comments", target=comment_thread).start()
     Thread(name="Save Karma", target=save_karma).start()
     Thread(name="Rudeness", target=rude_reply_thread).start()
-        
+
+
 def main():
     threads()

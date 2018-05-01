@@ -33,6 +33,9 @@ rudeness_log.txt
 violations.json
 violations_log.txt
 
+# Actual Rude Phrase File
+rude_phrases_real.py
+
 
 # Temp OCR files
 temp
