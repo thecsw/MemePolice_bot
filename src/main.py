@@ -57,7 +57,7 @@ subreddit = reddit.subreddit('pewdiepiesubmissions')
 violations_file = "./violations/violations.json"
 violations_log_file = "./logs/violations_log.txt"
 users_file = "./users/users.json"
-checked_file = "./data-analyzation/checked.txt"
+checked_file = "./checked.txt"
 rude_checked_file = "./rudeness/checked.txt"
 rude_log_file = "./rudeness/rudeness_log.txt"
 
@@ -225,16 +225,6 @@ def summon_bot(c):
             print("summon_bot triggered!")
     except Exception as e:
         print("Something bad happened in summon_bot: {}".format(e))
-
-
-def damage_sound(c):
-    try:
-        text = str(c.body.encode("utf-8").lower())
-        if "no u" in text:
-            c.reply(damages[random.randint(0, len(damages) - 1)])
-            print("damage_sound triggered!")
-    except Exception as e:
-        print("Something bad happened in damage_sound: {}".format(e))
 
 
 def save_karma():
