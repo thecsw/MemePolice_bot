@@ -8,17 +8,14 @@ from utils import log_to_file
 replace_chars = ['"', '.', ';', ':', '?', '!', '*', '+', '-', '(', ')', '[', ']', '{', '}', '>', '<', ',', '^', '@',
                  '$', '%', '&', '_', '=', '\n', '|', '\\', "#", '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-data_words_file = "./data-analyzation/words.json"
-data_checked_file = "./data-analyzation/checked.txt"
-
 
 def parse_comment(c):
-    check = open(data_checked_file, 'r')
+    check = open("./data-analyzation/checked.txt", 'r')
     checked = check.readlines()
     check.close()
 
     try:
-        file = open(data_words_file, 'r')
+        file = open("./data-analyzation/words.json", 'r')
         words_json = json.loads(file.read())
         file.close()
         file_length = len(words_json)
@@ -29,7 +26,7 @@ def parse_comment(c):
     if c.id + "\n" not in checked:
         print("Reading comment " + c.id + " at " + time.strftime("%b %d, %Y - %I:%M:%S") + " by " + str(c.author))
 
-        file = open(data_checked_file, "a")
+        file = open("./data-analyzation/checked.txt", "a")
         file.write(c.id + "\n")
         file.close()
 
@@ -55,7 +52,7 @@ def parse_comment(c):
 
                 if new_file_length > file_length - 500:
                     try:
-                        file = open(data_words_file, 'w')
+                        file = open("./data-analyzation/words.json", 'w')
                         file.write(json.dumps(words_json))
                     except:
                         log_to_file("Failed to write words.json at " + time.strftime("%b %d, %Y - %I:%M:%S"))
