@@ -10,7 +10,7 @@ Your violation was the keyword: '%VIOLATION%'.
 
 Do not publish old or overused memes here because **only fresh and skrattar memes are allowed!**
 
-You have been warned and please, do not make the same mistake twice. No penalty for now.
+You have been warned and please, do not make the same mistake twice. **I do NOT remove posts.**
 ______________________
 
 ^(I am an AI bot in this subreddit and my duty is to keep order and peace. Sometimes I can be wrong and if I am wrong, please reply or downvote. You can fix it by contributing to the code!  Meme Police is real.)
