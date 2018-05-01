@@ -5,36 +5,26 @@ import re
 
 from utils import log_to_file
 
-words = []
 replace_chars = ['"', '.', ';', ':', '?', '!', '*', '+', '-', '(', ')', '[', ']', '{', '}', '>', '<', ',', '^', '@',
                  '$', '%', '&', '_', '=', '\n', '|', '\\', "#", '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-
-word = ""
-
-words_json = {}
-
-file_length = -1
 
 words_file = "./data-analyzation/words.json"
 checked_file = "./data-analyzation/checked.txt"
 
-def init_analyzation():
-    try:
-        global words_json
-
-        file = open(words_file, 'r')
-        words_json = json.loads(file.read())
-        file.close()
-
-        file_length = len(words_json)
-    except Exception as e:
-        print("Failed during init_analyzation: {}".format(e))
 
 def parse_comment(c):
-
     check = open(checked_file, 'r')
     checked = check.readlines()
     check.close()
+
+    try:
+        file = open(words_file, 'r')
+        words_json = json.loads(file.read())
+        file.close()
+        file_length = len(words_json)
+    except:
+        log_to_file("Failed to read words.json at " + time.strftime("%b %d, %Y - %I:%M:%S"))
+        return
 
     if c.id + "\n" not in checked:
         print("Reading comment " + c.id + " at " + time.strftime("%b %d, %Y - %I:%M:%S") + " by " + str(c.author))
@@ -43,22 +33,18 @@ def parse_comment(c):
         file.write(c.id + "\n")
         file.close()
 
-        for w in c.body.split(' '):
-            if "http" in w or "/u/" in w or "/r/" in w or "\\" in str(w.encode('utf-8')):
+        body = str(c.body.encode('utf-8'))
+
+        for w in body.split(' '):
+            word = str(w.encode('utf-8'))
+
+            if "http" in word or "/u/" in word or "/r/" in word or "\\" in word:
                 continue
 
-            word = w
             for ch in replace_chars:
                 word = word.replace(ch, '')
 
-            if word != "" and word != " " and word != "'" and word != "," and word != '\n' and word[0] != "'" and "\\u" not in repr(word):
-                try:
-                    file = open(words_file, 'r')
-                    words_json = json.loads(file.read())
-                    file.close()
-                except:
-                    log_to_file("Failed to read words.json at " + time.strftime("%b %d, %Y - %I:%M:%S"))
-                    continue
+            if word is not "" and word is not " " and word is not "'" and word is not "," and word is not '\n' and word[0] is not "'":
 
                 if word in words_json.keys():
                     words_json[word] = int(words_json.get(word)) + 1
@@ -67,7 +53,7 @@ def parse_comment(c):
 
                 new_file_length = len(words_json)
 
-                if new_file_length > file_length - 100:
+                if new_file_length > file_length - 500:
                     try:
                         file = open(words_file, 'w')
                         file.write(json.dumps(words_json))

@@ -35,4 +35,16 @@ rude_reply_list = [
 
 
 def rudeness_reply(c):
+    write_to_rude_log("Replied to " + c.author + "'s comment: " + c.body + "\n\n")
     c.reply(rude_reply_list[random.randint(0, len(rude_reply_list) - 1)])
+
+
+def alt_rudeness_reply(c, text):
+    write_to_rude_log("Replied to " + c.author + "'s comment: " + c.body + " with " + text + "\n\n")
+    c.reply(text)
+
+
+def write_to_rude_log(text):
+    file = open("./rudeness/rudeness_log.txt", "a")
+    file.write(text)
+    file.close()

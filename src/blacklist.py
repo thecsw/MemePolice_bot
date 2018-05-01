@@ -6,13 +6,11 @@ illegal_memes = [
     "399",                      # Chair memes
     "chair",
     "but can you do this",
-    "you do this",
-    "tide pod",                 # Ugandan memes
-    "do u know",
+    "tide pod",
+    "do u know",                # Ugandan memes
     "da wae",
     "uganda",
     "slippy",                   # Slippy memes
-    "noodle",                   # Skidaddle memes
     "skiddadle",
     "skadoodle",
     "skidd",
@@ -38,18 +36,13 @@ illegal_memes = [
     "fbi agent",                # FBI agent memes
     "fbi",
     "original content",         # Self-explanatory
-    "logan paul",               # Logan Paul memes  
-    "logan",                    # It is dead from "PEWDIEPIE CRINGE" (24-02-2018)
-    "paul",
+    "logan paul",               # It is dead from "PEWDIEPIE CRINGE" (24-02-2018)
     "dead people",
     "suicide forest",
     "pauler",
     "paulers",
     "toucha",                   # Spaghet memes. They are just old.
     "spaghet",
-    "repost",                   # Reposts
-    "in 15 mins",               # 15 mins and legally allowed to leave memes
-    "legally allowed",
     "flat earth",               # Flat Earth thing. Dead from 05.04.18. 
     "why like this",
     "not like this",
