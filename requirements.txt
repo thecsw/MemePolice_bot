@@ -1,6 +1,6 @@
 praw
-tesseract-ocr
 pytesseract
 opencv-python
 Pillow
 tqdm
+tesseract-ocr

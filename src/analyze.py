@@ -10,25 +10,12 @@ replace_chars = ['"', '.', ';', ':', '?', '!', '*', '+', '-', '(', ')', '[', ']'
 
 
 def parse_comment(c):
-    check = open("./data-analyzation/checked.txt", 'r')
-    checked = check.readlines()
-    check.close()
-
     try:
         file = open("./data-analyzation/words.json", 'r')
         words_json = json.loads(file.read())
         file.close()
-        file_length = len(words_json)
-    except:
-        log_to_file("Failed to read words.json at " + time.strftime("%b %d, %Y - %I:%M:%S"))
-        return
 
-    if c.id + "\n" not in checked:
         print("Reading comment " + c.id + " at " + time.strftime("%b %d, %Y - %I:%M:%S") + " by " + str(c.author))
-
-        file = open("./data-analyzation/checked.txt", "a")
-        file.write(c.id + "\n")
-        file.close()
 
         body = str(c.body.encode('utf-8'))
 
@@ -48,15 +35,11 @@ def parse_comment(c):
                 else:
                     words_json[word] = 1
 
-                new_file_length = len(words_json)
-
-                if new_file_length > file_length - 500:
-                    try:
-                        file = open("./data-analyzation/words.json", 'w')
-                        file.write(json.dumps(words_json))
-                    except:
-                        log_to_file("Failed to write words.json at " + time.strftime("%b %d, %Y - %I:%M:%S"))
-                else:
-                    log_to_file("Length discrepancy in words.json at " + time.strftime(" % b % d, % Y - % I: % M: % S"))
+                file = open("./data-analyzation/words.json", 'w')
+                file.write(json.dumps(words_json))
 
                 file.close()
+
+    except:
+        log_to_file("Failed to read words.json at " + time.strftime("%b %d, %Y - %I:%M:%S"))
+        return

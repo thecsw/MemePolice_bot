@@ -10,7 +10,7 @@
 '''
 
 # This is the message that users receive about illegal memes
-from message import message, mention, damages
+from message import message, mention, damages, bl_message
 # This file contains one method to input an image and output found text
 from text_recognition import text_recognition
 # Dictionary of banned words
@@ -54,7 +54,7 @@ reddit = praw.Reddit(client_id=config.client_id,
 
 subreddit = reddit.subreddit('pewdiepiesubmissions')
 
-# Tesseract-OCR package can work only with jpeg, jpg, png, gif, bmp files. Reject all other urls
+# Tesseract-OCR package can work only with jpeg, jpg, png,c gif, bmp files. Reject all other urls
 pattern = re.compile(".(jpe?g|png|gifv?)(\?\S*)?")
 
 
@@ -163,11 +163,20 @@ def submission_thread():
 
                 if pattern.search(post.url) is not None:
                     print("\tMatched regex, post is an image")
+
+                    meme_text = ""
+
                     try:
-                        meme_text = text_recognition(post).lower()
-                    except:
-                        continue
+                        meme_text = str(text_recognition(post).lower())
+                    except Exception as e:
+                        print(e)
                     print("\tImage Text: {}".format(meme_text))
+
+                    if "bitch lasagna" in meme_text or "bitch lasagna" in str(title):
+                        message_to_send = bl_message
+                        post.reply(message_to_send)
+                        continue
+
                     for word in illegal_memes:
                         if word in meme_text:
                             # Save user data
@@ -187,6 +196,11 @@ def submission_thread():
                             break
 
                 else:
+                    if "bitch lasagna" in str(title):
+                        message_to_send = bl_message
+                        post.reply(message_to_send)
+                        continue
+
                     for word in illegal_memes:
                         if word in str(title):
                             # Save user data
@@ -203,10 +217,50 @@ def submission_thread():
 def comment_thread():
     while True:
         for c in subreddit.stream.comments():
-            if "memepolice" not in str(c.author.name.encode("utf-8").lower()):  # We don't need to parse our own comments
-                summon_bot(c)
-                parse_comment(c)
+
+            check = open("./checked_comments.txt", 'r')
+            checked = check.readlines()
+            check.close()
+
+            if c.id + "\n" not in checked:
+                file = open("./checked_comments.txt", "a")
+                file.write(c.id + "\n")
+                file.close()
+
+                if "memepolice" not in str(c.author.name.encode("utf-8").lower()):  # We don't need to parse our own comments
+                    summon_bot(c)
+                    parse_comment(c)
+                    reply_to_comments(c)
         time.sleep(30)
+
+
+def reply_to_comments(c):
+    try:
+        text = str(c.body.encode("utf-8").lower())  # c.body is a byte-like object but we need str
+
+        if "ur mom gay" in text or "your mom gay" in text:
+            alt_rudeness_reply(c, "no u")
+            return
+
+        elif "good bot" in text:
+            alt_rudeness_reply(c, "Good human :)")
+            return
+
+        elif "bad bot" in text:
+            alt_rudeness_reply(c, "My creators specifically programmed me to feel physical pain when people say I'm bad. I hope you're happy :(")
+            return
+
+        elif "no u" in text:
+            alt_rudeness_reply(c, damages[random.randint(0, len(damages) - 1)])
+            return
+
+        for w in rude_list:
+            if w in text:
+                rudeness_reply(c)
+                break
+
+    except Exception as e:
+        print("Something bad happened in reply_to_comments: {}".format(e))
 
 
 def summon_bot(c):
@@ -225,49 +279,17 @@ def save_karma():
     while True:
         for comment in memepolice.comments.new(limit=100):
             # It will parse 100 comments in 5-6 seconds
-            if comment.ups < -1:
+            if comment.ups < -2:
                 comment.delete()
 
         # 1 hour of sleep
         time.sleep(3600)
 
 
-def rude_reply_thread():
-    while True:
-        for m in reddit.inbox.comment_replies():
-            check = open("./rudeness/checked.txt", 'r')
-            checked = check.readlines()
-            check.close()
-
-            if m.id + "\n" not in checked:
-                file = open("./rudeness/checked.txt", "a")
-                file.write(m.id + "\n")
-                file.close()
-
-                body = str(m.body.encode("utf-8").lower())
-
-                if "ur mom gay" in body or "your mom gay" in body:
-                    alt_rudeness_reply(m, "no u")
-                    continue
-
-                if "no u" in body:
-                    alt_rudeness_reply(m, damages[random.randint(0, len(damages) - 1)])
-                    continue
-
-                for w in rude_list:
-                    if w in m.body:
-                        rudeness_reply(m)
-                        break
-
-        # 15 minutes of sleep
-        time.sleep(900)
-
-
 def threads():
     Thread(name="Submissions", target=submission_thread).start()
     Thread(name="Comments", target=comment_thread).start()
     Thread(name="Save Karma", target=save_karma).start()
-    Thread(name="Rudeness", target=rude_reply_thread).start()
 
 
 def main():

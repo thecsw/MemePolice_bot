@@ -4,7 +4,6 @@
 
 illegal_memes = [
     "399",                      # Chair memes
-    "chair",
     "but can you do this",
     "tide pod",
     "do u know",                # Ugandan memes
@@ -36,17 +35,12 @@ illegal_memes = [
     "fbi agent",                # FBI agent memes
     "fbi",
     "original content",         # Self-explanatory
-    "logan paul",               # It is dead from "PEWDIEPIE CRINGE" (24-02-2018)
     "dead people",
     "suicide forest",
-    "pauler",
-    "paulers",
     "toucha",                   # Spaghet memes. They are just old.
-    "spaghet",
     "flat earth",               # Flat Earth thing. Dead from 05.04.18. 
     "why like this",
     "not like this",
     "if earth is round",
-    "if earth is not flat",
-    "this is so sad"
+    "if earth is not flat"
 ]

@@ -4,6 +4,7 @@
 # Our checklists
 words.json
 checked.txt
+checked_comments.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

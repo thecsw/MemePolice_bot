@@ -32,3 +32,19 @@ damages = [                     # This array holds responses for comments like "
     "*the sniper 2 damage sound*",
     "*pubg damage sound*"
 ]
+
+
+bl_message = """ *Police sounds*
+
+Good day, sir/ma'am! You have been visited by the **Meme Police!**
+
+I see that you posted a FUCKING AWESOME meme on r/PewdiepieSubmissions
+
+**T-Series ain't nothing but a Bitch Lasagna**
+
+______________________
+
+^(I am an AI bot in this subreddit and my duty is to keep order and peace. Sometimes I can be wrong and if I am wrong, please reply or downvote. You can fix it by contributing to the code!  Meme Police is real.)
+
+[Source code](https://github.com/thecsw/MemePolice_bot) | [Subreddit](https://reddit.com/r/MemePolice_bot)
+"""
